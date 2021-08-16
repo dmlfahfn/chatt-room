@@ -7,7 +7,33 @@
 
 <body>
   <h1>Express</h1>
-  <p>Welcome to Express</p>
+  <p>Welcome to Socket</p>
+
+  <ul id="chat"></ul>
+  <form id="form">
+    <input type="text" id="input">
+    <button>Send</button>
+  </form>
+
+  <script src="socket.io/socket.io.js"></script>
+
+  <script>
+    const socket = io();
+
+    let form = document.getElementById("form");
+    let input = document.getElementById("input");
+
+    form.addEventListener("submit", (e)=> {
+      e.preventDefault();
+
+      if(input.value){
+        socket.emit("chat message", {text: input.value});
+        console.log({text: input.value});
+        input.value = "";
+      }
+    })
+
+  </script>
 </body>
 
 </html>
