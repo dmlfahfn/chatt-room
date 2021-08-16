@@ -28,9 +28,14 @@
 
       if(input.value){
         socket.emit("chat message", {text: input.value});
-        console.log({text: input.value});
         input.value = "";
       }
+    });
+
+    socket.on("chat message", (msg) => {
+      let chat = document.getElementById("chat");
+      console.log("msg", msg);
+      chat.insertAdjacentHTML("beforeend", "<li>" + msg.text + "</li>");
     })
 
   </script>
