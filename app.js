@@ -19,6 +19,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+const users = {};
+
 io.on("connection", (socket) => {
     console.log("User Connected");
 
@@ -26,9 +28,15 @@ io.on("connection", (socket) => {
         console.log("User Disconnect");
     });
 
+    socket.on("new user", (username) => {
+        users[socket.id] = username;
+        io.emit("username connected", username);
+
+    })
+
     socket.on("chat message", (msg) =>{
         console.log("msg", msg);
-        socket.broadcast.emit("chat message", msg)
+        io.emit("chat message", msg)
     });
 });
 
