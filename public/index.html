@@ -32,6 +32,11 @@
       }
     });
 
+    let username = prompt("Type in your name");
+    let chat = document.getElementById("chat");
+    chat.insertAdjacentHTML("beforeend", username)
+    socket.emit("new user", username)
+
     socket.on("chat message", (msg) => {
       let chat = document.getElementById("chat");
       console.log("msg", msg);
