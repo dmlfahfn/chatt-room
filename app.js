@@ -30,7 +30,7 @@ io.on("connection", (socket) => {
 
     socket.on("new user", (username) => {
         users[socket.id] = username;
-        io.emit("username connected", username);
+        socket.broadcast.emit("username connected", username);
 
     })
 

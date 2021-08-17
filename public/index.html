@@ -33,6 +33,8 @@
     });
 
     let username = prompt("Type in your name");
+    let chat = document.getElementById("chat");
+    chat.insertAdjacentHTML("beforeend", "<li> You joined </li>")
     socket.emit("new user", username)
 
     socket.on("chat message", (msg) => {
@@ -43,7 +45,7 @@
 
     socket.on("username connected", (name) => {
       let chat = document.getElementById("chat");
-      chat.insertAdjacentHTML("beforeend", "<li>" + name + " Connected!</li>");
+      chat.insertAdjacentHTML("beforeend", "<li>" + name + " connected!</li>");
     })
 
   </script>
