@@ -40,7 +40,8 @@
     socket.on("chat message", (msg) => {
       let chat = document.getElementById("chat");
       console.log("msg", msg);
-      chat.insertAdjacentHTML("beforeend", "<li>" + msg.text + "</li>");
+      console.log("name", msg.name);
+      chat.insertAdjacentHTML("beforeend", "<li>" + msg.name +": "+ msg.msg.text + "</li>");
     });
 
     socket.on("username connected", (name) => {

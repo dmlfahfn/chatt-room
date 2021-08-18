@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 
     socket.on("chat message", (msg) =>{
         console.log("msg", msg);
-        io.emit("chat message", msg)
+        io.emit("chat message", {msg: msg, name: users[socket.id]})
     });
 });
 
