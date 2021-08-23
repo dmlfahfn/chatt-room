@@ -22,18 +22,19 @@
 
     let form = document.getElementById("form");
     let input = document.getElementById("input");
+    let chat = document.getElementById("chat");
 
     form.addEventListener("submit", (e)=> {
       e.preventDefault();
 
       if(input.value){
         socket.emit("chat message", {text: input.value});
+        chat.insertAdjacentHTML("beforeend", "<li> You: " + input.value+ "</li>");
         input.value = "";
       }
     });
 
     let username = prompt("Type in your name");
-    let chat = document.getElementById("chat");
     chat.insertAdjacentHTML("beforeend", "<li> You joined </li>")
     socket.emit("new user", username)
 
